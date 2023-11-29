@@ -11,20 +11,22 @@ const PORT = process.env.SERVER_PORT || 5000;
 
 application.use(bodyParser.json());
 
-mongoose.connect(process.env.DB_CONNECTION_STRING_DEV,
-{ useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+mongoose.connect(process.env.DB_CONNECTION_STRING_DEV).then(() => {
     console.log('Connected to MongoDB');
     application.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     });
 }).catch((err) => {
+    console.log('Failed to connect to MongoDB');
     console.log(err);
 });
 
-application.use('/api/auth', authRoutes);
+// application.use('/api/auth', authRoutes);
 
-application.use('*', (req, res) => {
-    res.status(404).json({
-        error: 'Not found'
-    });
-})
+// application.use('*', (req, res) => {
+//     res.status(404).json({
+//         error: 'Not found'
+//     });
+// })
+
+module.exports = application;
