@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
+const notesRoutes = require('./routes/teamNotes');
 
 dotenv.config();
 
@@ -22,7 +23,7 @@ mongoose.connect(process.env.DB_CONNECTION_STRING_DEV).then(() => {
 });
 
 application.use('/api/auth', authRoutes);
-
+application.use('/api/teamNotes', notesRoutes);
 application.use('*', (req, res) => {
     res.status(404).json({
         error: `Not Found: ${req.originalUrl}`

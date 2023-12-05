@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')l
+const mongoose = require('mongoose');
 
 const noteSchema = new mongoose.Schema({
     title: {
